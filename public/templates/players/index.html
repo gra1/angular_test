@@ -1,0 +1,53 @@
+<br/>
+<div class="row">
+    <div class="col-md-12">
+        <div class='search_div'>
+            <h4>Search</h4>
+            <input ng-model='search_query'>
+        </div>
+        <h3 class="block">Players</h3>
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    <a href="" ng-click="sort('first_name')" >First Name</a>
+                </th>
+                <th>
+                    <a href="" ng-click="sort('last_name')">Last Name</a>
+                </th>
+                <th>
+                    <a href="" ng-click="sort('age')">Age</a>
+                </th>
+                <th>
+                    <a href="" ng-click="sort('birth_date')">Birth date</a>
+                </th>
+                <th>
+                    <a href="" ng-click="sort('gender')">Gender</a>
+                </th>
+                <th>
+                    <a href="" ng-click="sort('price')">Price</a>
+                </th>
+                <th>
+                    <a href="" ng-click="sort('team')">Team</a>
+                </th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="player in players.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter:search_query | orderBy:sortField:reverse">
+                <td>{{player.first_name}}</td>
+                <td>{{player.last_name}}</td>
+                <td>{{player.age}}</td>
+                <td>{{player.birth_date}}</td>
+                <td>{{player.gender}}</td>
+                <td>{{player.price}}</td>
+                <td>{{player.team}}</td>
+                <td>
+                    <a href="#/players/{{player.id}}/edit" class='btn btn-info edit_class'>Edit</a>
+                    <a href="" ng-click="deletePlayer(player.id)" class='btn btn-danger'>Delete</a>
+                </td>
+            </tr>
+        </table>
+        <pagination total-items="players.length" ng-model="currentPage" items-per-page="itemsPerPage"></pagination>
+        <div class='new_player_class'>
+            <a class="btn btn-primary" href="#/players/new">Create a player</a>
+        </div>        
+    </div>
+</div>
